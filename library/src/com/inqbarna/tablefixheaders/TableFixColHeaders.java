@@ -692,11 +692,11 @@ public class TableFixColHeaders extends ViewGroup {
 	}
 
 	private void scrollBounds() {
-		scrollX = scrollHorizionalBounds(scrollX, firstColumn, widths, width);
-		scrollY = scrollVerticalBounds(scrollY, firstRow, heights, height);
+		scrollX = scrollXBounds(scrollX, firstColumn, widths, width);
+		scrollY = scrollYBounds(scrollY, firstRow, heights, height);
 	}
 
-	private int scrollHorizionalBounds(int desiredScroll, int firstCell, int sizes[], int viewSize) {
+	private int scrollXBounds(int desiredScroll, int firstCell, int sizes[], int viewSize) {
 		if (desiredScroll == 0) {
 			// no op
 		} else if (desiredScroll < 0) {
@@ -706,7 +706,7 @@ public class TableFixColHeaders extends ViewGroup {
 		}
 		return desiredScroll;
 	}
-	private int scrollVerticalBounds(int desiredScroll, int firstCell, int sizes[], int viewSize) {
+	private int scrollYBounds(int desiredScroll, int firstCell, int sizes[], int viewSize) {
 		if (desiredScroll == 0) {
 			// no op
 		} else if (desiredScroll < 0) {
@@ -720,16 +720,16 @@ public class TableFixColHeaders extends ViewGroup {
 	private void adjustFirstCellsAndScroll() {
 		int values[];
 
-		values = adjustFirstCellsAndScroll2(scrollX, firstColumn, widths);
+		values = adjustXFirstCellsAndScroll(scrollX, firstColumn, widths);
 		scrollX = values[0];
 		firstColumn = values[1];
 
-		values = adjustFirstCellsAndScroll(scrollY, firstRow, heights);
+		values = adjustYFirstCellsAndScroll(scrollY, firstRow, heights);
 		scrollY = values[0];
 		firstRow = values[1];
 	}
 
-	private int[] adjustFirstCellsAndScroll2(int scroll, int firstCell, int sizes[]) {
+	private int[] adjustXFirstCellsAndScroll(int scroll, int firstCell, int sizes[]) {
 		if (scroll == 0) {
 			// no op
 		} else if (scroll > 0) {
@@ -745,7 +745,7 @@ public class TableFixColHeaders extends ViewGroup {
 		}
 		return new int[] { scroll, firstCell};
 	}
-	private int[] adjustFirstCellsAndScroll(int scroll, int firstCell, int sizes[]) {
+	private int[] adjustYFirstCellsAndScroll(int scroll, int firstCell, int sizes[]) {
 		if (scroll == 0) {
 			// no op
 		} else if (scroll > 0) {
